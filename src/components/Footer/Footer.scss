@@ -1,0 +1,22 @@
+.bottom-bar {
+  width: 100%;
+  border: 0.2px solid slategrey;
+  display: flex;
+  height: 60px;
+  min-height: 6vh; // viewport height
+  background-color: #222222;
+  z-index: 100;
+  .bottom-bar-button {
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.1em;
+    line-height: 21px;
+    &:hover {
+      color: #C3712F;
+    }
+  }
+}
+
