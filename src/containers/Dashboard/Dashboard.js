@@ -11,7 +11,7 @@ export class Dashboard extends Component {
         super(props);
 
         this.state = {
-            isLoginModalShown: true
+            isLoginModalShown: false
         };
     }
 
@@ -42,8 +42,7 @@ export class Dashboard extends Component {
                     </Col>
                 </Row>
 
-
-                <LoginModal loginUser={null} logoutUser={null}/>
+                {this.state.isLoginModalShown ? <LoginModal loginUser={null} logoutUser={null} /> : null}
             </div>
         )
 

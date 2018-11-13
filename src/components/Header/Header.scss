@@ -14,10 +14,13 @@
     color: #FFFFFF;
     font-size: 1.1em;
     line-height: 21px;
+
     &:hover {
       color: #C3712F;
     }
   }
+
+
 }
 
 
@@ -33,4 +36,25 @@
   justify-content: flex-end;
   flex-flow: row nowrap;
 }
+
+.tiger-icon {
+  object-fit: contain;
+  position: relative;
+  height: 100%;
+  vertical-align: middle;
+  left: -10px;
+}
+
+.tiger-text {
+  display: inline-flex;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.inline-div {
+  display: inline-block;
+  height: 40px;
+}
+
 

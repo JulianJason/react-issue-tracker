@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Row, Col } from 'react-grid-system'
 
 import styles from './Header.scss';
+import tigerIcon from 'assets/tiger-paw-icon.png';
 
 export class Header extends Component {
     constructor(props) {
@@ -20,7 +21,10 @@ export class Header extends Component {
 
                 <Col className="header-left" sm={6}>
                     <div className="nav-bar-button">
-                        Create
+                        <div className="inline-div">
+                            <img className="tiger-icon" src={tigerIcon} alt="Tiger Tracker"/>
+                        </div>
+                        <p className="tiger-text"> Tiger Track</p>
                     </div>
                     <div className="nav-bar-button">
                         Edit

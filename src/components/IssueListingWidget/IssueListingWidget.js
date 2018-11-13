@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import _ from 'lodash';
+
+import "./IssueListingWidget.scss";
+
 export class IssueListingWidget extends Component {
     constructor(props) {
         super(props)
@@ -13,9 +15,9 @@ export class IssueListingWidget extends Component {
         const issueListArray = [];
         listObject.forEach(object => (
                 issueListArray.push(<div className="list-item" key={object['issue-title']}>
-                    <h4>{object['issue-title']}</h4>
+                    <p className="list-item-text">{object['issue-title']}</p>
                 </div>)
-            ))
+            ));
 
         return issueListArray;
         }
@@ -24,22 +26,22 @@ export class IssueListingWidget extends Component {
 
 
         const sampleListing1 = {
-            "issue-title": "This is a sample listing 1",
-            "issue-type": "Bug",
+            "issue-title": "Create Login Button",
+            "issue-type": "Improvement",
             "issue-description": "This issue has to be resolved ASAP",
         };
 
 
         const sampleListing2 = {
-            "issue-title": "This is a sample listing 2",
+            "issue-title": "Implement Redux",
             "issue-type": "Improvement",
             "issue-description": "This issue has to be resolved ASAP",
         };
 
 
         const sampleListing3 = {
-            "issue-title": "This is a sample listing 3",
-            "issue-type": "Question",
+            "issue-title": "Add animation to login modal",
+            "issue-type": "Bug",
             "issue-description": "This issue has to be resolved ASAP",
         };
 
@@ -50,7 +52,6 @@ export class IssueListingWidget extends Component {
 
         return (
             <div className="listing-container">
-                <h2>test</h2>
                 {this.renderIssueListItems(samplePayload)}
             </div>
         )

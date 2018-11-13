@@ -9,7 +9,10 @@ export class ChartsWidget extends Component {
     render() {
         return (
             <div>
-                <h2> This is the charts widget</h2>
+                <p> Total Issues</p>
+                <p> Issues need priority</p>
+                <p> Analytics </p>
+                <p> Help</p>
             </div>
         )
     }

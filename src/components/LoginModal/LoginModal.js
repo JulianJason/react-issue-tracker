@@ -38,7 +38,8 @@ export class LoginModal extends Component {
         return (
             <div className="modal display-block">
                 <section className="modal-main fade-in">
-                <br />
+
+                    <p className="login-modal-text">Sign in to Tiger Track</p>
                     <input type="text" ref="username" placeholder="Username" /><p />
                     <input type="password" ref="password" placeholder="Password" /><p />
                     <input onClick={this.handleSubmit} type="submit" value="Login" /><p />
