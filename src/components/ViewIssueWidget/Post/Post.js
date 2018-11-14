@@ -13,16 +13,23 @@ export class Post extends Component {
 
 
         return (
-            <div>
+            <div className="post-container">
                 <div className="post-header" >
-                    <p>{this.props.author}</p> <p> Posted on {this.props.dateTime}</p>
+                    <p className="post-header-author">{this.props.author}</p> <p className="post-header-minor"> Posted on {this.props.datetime}</p>
                 </div>
 
                 <div className="post-body">
-                    <p>{this.props.description}</p>
+                  {this.props.description === null ? <p className="no-desc"> No Description Provided</p> :
+                    <p className="post-description">{this.props.description}</p>
+                  }
                 </div>
             </div>
         )
     }
 }
 
+Post.propTypes = {
+    author: PropTypes.string.isRequired,
+    datetime: PropTypes.string.isRequired,
+    description: PropTypes.string
+};

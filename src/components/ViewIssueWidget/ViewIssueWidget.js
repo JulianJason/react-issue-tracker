@@ -23,8 +23,13 @@ export class ViewIssueWidget extends Component {
 
         return (
             <div>
-                <Post title={sampleListing1['author']} description={sampleListing1['issue-description']} datetime={sampleListing1['datetime']} />
+                <Post author={sampleListing1['author']} description={sampleListing1['issue-description']} datetime={sampleListing1['datetime']} />
+                <Post author={sampleListing1['author']} description={sampleListing1['issue-description']} datetime={sampleListing1['datetime']} />
             </div>
         )
     }
 }
+
+ViewIssueWidget.PropTypes = {
+
+};

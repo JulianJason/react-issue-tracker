@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Row, Col } from 'react-grid-system'
 
-import styles from './Header.scss';
+import './Header.scss';
 import tigerIcon from 'assets/tiger-paw-icon.png';
 
 export class Header extends Component {
@@ -27,17 +27,15 @@ export class Header extends Component {
                         <p className="tiger-text"> Tiger Track</p>
                     </div>
                     <div className="nav-bar-button">
-                        Edit
+                        Home
                     </div>
                     <div className="nav-bar-button">
-                        Close
+                        Explore
                     </div>
                     <div className="nav-bar-button">
-                        List
+                        Analytics
                     </div>
-                    <div className="nav-bar-button">
-                        Reorder
-                    </div>
+
                 </Col>
 
                 <Col className="header-right" sm={6}>

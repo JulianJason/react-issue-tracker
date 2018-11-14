@@ -4,11 +4,6 @@ import PropTypes from "prop-types";
 import "./IssueListingWidget.scss";
 
 export class IssueListingWidget extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-
 
     renderIssueListItems(listObject) {
         console.log("Trying to render")
@@ -57,3 +52,7 @@ export class IssueListingWidget extends Component {
         )
     }
 }
+
+IssueListingWidget.PropTypes = {
+
+};

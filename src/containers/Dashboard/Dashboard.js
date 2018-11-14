@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-import styles from './Dashboard.scss';
+import './Dashboard.scss';
 
-import { Container, Row, Col } from 'react-grid-system'
+import { Row, Col } from 'react-grid-system'
 import { ChartsWidget, IssueListingWidget, ViewIssueWidget } from "../../components/index.js";
 import {LoginModal} from "../../components";
 

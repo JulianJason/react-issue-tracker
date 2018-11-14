@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import styles from './LoginModal.scss'
+
+import './LoginModal.scss'
 
 export class LoginModal extends Component {
     constructor(props) {
@@ -36,14 +37,15 @@ export class LoginModal extends Component {
         }
 
         return (
-            <div className="modal display-block">
+            <div className="modal display-block" onClick={null}>
                 <section className="modal-main fade-in">
 
                     <p className="login-modal-text">Sign in to Tiger Track</p>
                     <input type="text" ref="username" placeholder="Username" /><p />
                     <input type="password" ref="password" placeholder="Password" /><p />
-                    <input onClick={this.handleSubmit} type="submit" value="Login" /><p />
-                    <p>Not login yet</p>
+                    <button className="login-button" onClick={this.handleSubmit} type="submit">Login</button>
+                    <p className="forgot-password-text"> </p>
+                    <button className="login-button" onClick={null} type="submit"> Sign up</button>
                 </section>
             </div>
         );

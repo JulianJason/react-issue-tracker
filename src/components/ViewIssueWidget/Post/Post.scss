@@ -1,7 +1,44 @@
-.post-header {
-  height: 50px;
-}
+.post-container {
 
-.post-body {
-  height: 100px;
+  margin: 14px 0 0 0;
+  padding: 4px 8px 4px 4px;
+  background-color: ghostwhite;
+  border: 1px solid lightslategrey;
+  border-radius: 10px;
+  max-width: 40vw;
+
+  .post-header {
+    border-bottom: 1px solid lightslategrey;
+    text-align: left;
+    .post-header-author {
+      font-weight: bold;
+      color: darkgrey;
+      display: inline;
+      -ms-word-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .post-header-minor {
+      color: grey;
+      display: inline;
+      -ms-word-wrap: break-word;
+      word-wrap: break-word;
+    }
+  }
+
+  .post-body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+
+    .no-desc {
+      color: lightslategrey;
+    }
+
+    .post-description {
+      font-size: 12px;
+    }
+  }
+
+
 }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
-import styles from './Footer.scss';
+import './Footer.scss';
 
 export class Footer extends Component {
     constructor(props) {
@@ -35,7 +34,3 @@ export class Footer extends Component {
         )
     }
 }
-
-Footer.propTypes = {
-
-};

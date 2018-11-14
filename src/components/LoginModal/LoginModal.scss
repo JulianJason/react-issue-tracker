@@ -11,12 +11,14 @@
     position:fixed;
     background: white;
     width: 35%;
+    max-width: 300px;
     min-width: min-content;
     height: auto;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
     border-radius: 16px;
+    padding: 40px 20px;
   }
 
   .login-modal-text {
@@ -24,6 +26,15 @@
     font-weight: 600;
 
   }
+
+  .login-button {
+    background-color: #cc9933;
+    border-radius: 8px;
+    width: 55%;
+    line-height: 28px;
+    color: white;
+  }
+
 }
 
 
