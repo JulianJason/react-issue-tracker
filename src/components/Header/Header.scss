@@ -6,7 +6,6 @@
   background-color: #222222;
   z-index: 100;
   padding-left: 15px;
-  padding-right: -15px;
   .nav-bar-button {
     min-width: 100px;
     display: inline-block;
@@ -14,8 +13,15 @@
     font-size: 1.1em;
     line-height: 21px;
 
-    &:hover {
-      color: #C3712F;
+
+
+    a {
+      color: #FFFFFF;
+      text-decoration: none;
+
+      &:hover {
+        color: #C3712F;
+      }
     }
   }
 
@@ -49,12 +55,12 @@
   font-size: 20px;
   color: white;
   font-weight: bold;
-  margin-right: 10px;
 }
 
 .inline-div {
   display: inline-block;
   height: 40px;
 }
+
 
 

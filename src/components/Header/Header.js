@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from 'react-grid-system'
+import { Row, Col } from 'react-grid-system';
+import { Link } from 'react-router-dom';
 
 import './Header.scss';
 import tigerIcon from 'assets/tiger-paw-icon.png';
@@ -27,13 +28,13 @@ export class Header extends Component {
                         <p className="tiger-text"> Tiger Track</p>
                     </div>
                     <div className="nav-bar-button">
-                        Home
+                        <Link to="/">Home</Link>
                     </div>
                     <div className="nav-bar-button">
-                        Explore
+                        <Link to="/explore">Explore</Link>
                     </div>
                     <div className="nav-bar-button">
-                        Analytics
+                        <Link to="/analytics">Analytics</Link>
                     </div>
 
                 </Col>
@@ -48,5 +49,5 @@ export class Header extends Component {
     }
 }
 Header.propTypes = {
-    handleLogin: PropTypes.func.isRequired
+    //handleLogin: PropTypes.func.isRequired
 };

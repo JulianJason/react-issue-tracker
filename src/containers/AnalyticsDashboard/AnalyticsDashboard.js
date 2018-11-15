@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import _ from 'lodash';
 
-import './Dashboard.scss';
+import './AnalyticsDashboard.scss';
 
 import { Row, Col } from 'react-grid-system'
-import { ChartsWidget, IssueListingWidget, ViewIssueWidget } from "../../components/index.js";
+import { ViewIssueWidget } from "../../components/index.js";
 import {LoginModal} from "../../components";
-import FakeBackend from "../../services/FakeBackend";
 
-export class Dashboard extends Component {
+export class AnalyticsDashboard extends Component {
     constructor(props) {
         super(props);
 
@@ -27,21 +25,20 @@ export class Dashboard extends Component {
 
 
     render() {
-        const issuePayloadArray = FakeBackend.getAllPosts();
         return (
             <div className="body-layout-master">
                 <Row className="body-layout-row">
                     <Col className="body-layout-col" sm={3}>
-                        <ChartsWidget allPosts={issuePayloadArray}/>
+                        <p> This is now analytics </p>
 
                         <div className="separator"/>
 
-                        <IssueListingWidget allPosts={issuePayloadArray} />
+                        <p> This is now analytics </p>
 
                     </Col>
 
                     <Col className="body-layout-col" sm={9}>
-                        <ViewIssueWidget selectedPost={_.sample(issuePayloadArray)}/>
+                        <ViewIssueWidget/>
                     </Col>
                 </Row>
 

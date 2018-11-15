@@ -3,56 +3,44 @@ import PropTypes from "prop-types";
 
 import "./IssueListingWidget.scss";
 
+import "./../../services/FakeBackend";
+
 export class IssueListingWidget extends Component {
 
-    renderIssueListItems(listObject) {
-        console.log("Trying to render")
-        const issueListArray = [];
-        listObject.forEach(object => (
-                issueListArray.push(<div className="list-item" key={object['issue-title']}>
+    renderIssueListItems(listArray) {
+        const issueListRender = [];
+
+        listArray.forEach(object => (
+                issueListRender.push(<div className="list-item" key={object['issue-title']}>
                     <p className="list-item-text">{object['issue-title']}</p>
                 </div>)
             ));
 
-        return issueListArray;
+        return issueListRender;
         }
 
     render() {
 
 
-        const sampleListing1 = {
-            "issue-title": "Create Login Button",
-            "issue-type": "Improvement",
-            "issue-description": "This issue has to be resolved ASAP",
-        };
-
-
-        const sampleListing2 = {
-            "issue-title": "Implement Redux",
-            "issue-type": "Improvement",
-            "issue-description": "This issue has to be resolved ASAP",
-        };
-
-
-        const sampleListing3 = {
-            "issue-title": "Add animation to login modal",
-            "issue-type": "Bug",
-            "issue-description": "This issue has to be resolved ASAP",
-        };
-
-        const samplePayload = [];
-        samplePayload.push(sampleListing1);
-        samplePayload.push(sampleListing2);
-        samplePayload.push(sampleListing3);
-
-        return (
-            <div className="listing-container">
-                {this.renderIssueListItems(samplePayload)}
+        var issueListing = null;
+        if (this.props.allPosts.length > 0) {
+            issueListing = <div className="listing-container">
+                {this.renderIssueListItems(this.props.allPosts)}
             </div>
+        } else {
+            issueListing = <div>
+                <p> No Posts Available</p>
+            </div>
+        }
+        return (
+            <div>
+                {issueListing}
+            </div>
+
         )
     }
 }
 
-IssueListingWidget.PropTypes = {
-
+IssueListingWidget.propTypes = {
+    allPosts: PropTypes.array
 };
