@@ -89,10 +89,15 @@ export default class FakeBackend {
         return allPosts
     }
 
+    static filterPosts() {
+        return null
+    }
+
     static createNewIssue(issueObject) {
         const key = issueObject['issue-title'];
         keys.push(key);
-        localStorage.setObj(key, issueObject)
+        localStorage.setObj(key, issueObject);
+        console.log("Created new issue")
     }
 
 

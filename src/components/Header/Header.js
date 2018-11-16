@@ -9,11 +9,6 @@ import tigerIcon from 'assets/tiger-paw-icon.png';
 export class Header extends Component {
     constructor(props) {
         super(props);
-        this.handleRouting = this.handleRouting.bind(this)
-    }
-
-    handleRouting(route) {
-        return null
     }
 
     render() {
@@ -27,16 +22,6 @@ export class Header extends Component {
                         </div>
                         <p className="tiger-text"> Tiger Track</p>
                     </div>
-                    <div className="nav-bar-button">
-                        <Link to="/">Home</Link>
-                    </div>
-                    <div className="nav-bar-button">
-                        <Link to="/explore">Explore</Link>
-                    </div>
-                    <div className="nav-bar-button">
-                        <Link to="/analytics">Analytics</Link>
-                    </div>
-
                 </Col>
 
                 <Col className="header-right" sm={6}>
@@ -51,3 +36,17 @@ export class Header extends Component {
 Header.propTypes = {
     //handleLogin: PropTypes.func.isRequired
 };
+
+
+/**
+ *
+ <div className="nav-bar-button">
+ <Link to="/">Home</Link>
+ </div>
+ <div className="nav-bar-button">
+ <Link to="/explore">Explore</Link>
+ </div>
+ <div className="nav-bar-button">
+ <Link to="/analytics">Analytics</Link>
+ </div>
+ */

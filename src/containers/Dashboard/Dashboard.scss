@@ -4,11 +4,12 @@
   min-height: 84vh; // viewport height
   background-color: floralwhite;
   .body-layout-row {
-
-    .body-layout-col {
+    display: flex;
+    flex-wrap: wrap;
+    .sidebar {
       border-right: 2.2px solid #28292c;
       background-color: #ffffff;
-      height: 84vh;
+      height: 90vh;
     }
   }
 

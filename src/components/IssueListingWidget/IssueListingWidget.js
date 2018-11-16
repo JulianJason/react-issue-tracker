@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 import "./IssueListingWidget.scss";
 
@@ -11,9 +13,14 @@ export class IssueListingWidget extends Component {
         const issueListRender = [];
 
         listArray.forEach(object => (
-                issueListRender.push(<div className="list-item" key={object['issue-title']}>
-                    <p className="list-item-text">{object['issue-title']}</p>
-                </div>)
+                issueListRender.push(
+                    <li
+                        className="list-item"
+                        key={object['issue-title']}
+                        onClick={() => this.props.onPostSelect(object)}
+                    >
+                        <p className="list-item-text">{object['issue-title']}</p>
+                     </li>)
             ));
 
         return issueListRender;
@@ -23,10 +30,10 @@ export class IssueListingWidget extends Component {
 
 
         var issueListing = null;
-        if (this.props.allPosts.length > 0) {
-            issueListing = <div className="listing-container">
+        if (!_.isEmpty(this.props.allPosts)) {
+            issueListing = <ul className="listing-container">
                 {this.renderIssueListItems(this.props.allPosts)}
-            </div>
+            </ul>
         } else {
             issueListing = <div>
                 <p> No Posts Available</p>
@@ -34,6 +41,17 @@ export class IssueListingWidget extends Component {
         }
         return (
             <div>
+                <div>
+                    <p>Issues</p>
+                    <Link to="/new">
+                        <button className="new-issue-button">
+                            Create new issue
+                        </button>
+                    </Link>
+                </div>
+                <div>
+                    <input className="search-filter" />
+                </div>
                 {issueListing}
             </div>
 
@@ -42,5 +60,6 @@ export class IssueListingWidget extends Component {
 }
 
 IssueListingWidget.propTypes = {
-    allPosts: PropTypes.array
+    allPosts: PropTypes.array,
+    onPostSelect: PropTypes.func
 };

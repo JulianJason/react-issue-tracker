@@ -18,7 +18,7 @@ export class ChartsWidget extends Component {
         if (this.props.allPosts !== null) {
             console.log(JSON.stringify(this.props.allPosts,null,2));
             this.props.allPosts.forEach(function(issue) {
-                typeMap[issue['issue-type']] = (typeMap['issue-type'] || 0) + 1;
+                typeMap[issue['issue-type']] = (typeMap[issue['issue-type']] || 0) + 1;
                 if (issue['issue-closed'] === false) typeMap['open issue'] = (typeMap['open issue'] || 0)+1;
 
             })

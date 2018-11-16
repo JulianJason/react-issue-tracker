@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-import './AnalyticsDashboard.scss';
+import './AnalyticsPanel.scss';
 
 import { Row, Col } from 'react-grid-system'
 import { ViewIssueWidget } from "../../components/index.js";
 import {LoginModal} from "../../components";
 
-export class AnalyticsDashboard extends Component {
+export class AnalyticsPanel extends Component {
     constructor(props) {
         super(props);
 
@@ -27,20 +27,7 @@ export class AnalyticsDashboard extends Component {
     render() {
         return (
             <div className="body-layout-master">
-                <Row className="body-layout-row">
-                    <Col className="body-layout-col" sm={3}>
-                        <p> This is now analytics </p>
-
-                        <div className="separator"/>
-
-                        <p> This is now analytics </p>
-
-                    </Col>
-
-                    <Col className="body-layout-col" sm={9}>
-                        <ViewIssueWidget/>
-                    </Col>
-                </Row>
+                <ViewIssueWidget/>
 
                 {this.state.isLoginModalShown ? <LoginModal loginUser={null} logoutUser={null} /> : null}
             </div>
