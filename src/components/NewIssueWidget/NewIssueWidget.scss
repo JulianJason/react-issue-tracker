@@ -29,15 +29,16 @@
     min-height: 140px;
     max-height: 500px;
     box-shadow: none;
-    padding: auto;
     margin: auto;
     resize: none;
+    padding: 0 8px 8px;
   }
 
   .new-issue-submit-button {
     width: max-content;
     align-self: flex-end;
     text-wrap: normal;
+    margin: 4px 8px;
   }
 }
 

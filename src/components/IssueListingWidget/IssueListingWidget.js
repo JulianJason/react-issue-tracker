@@ -5,8 +5,6 @@ import _ from 'lodash';
 
 import "./IssueListingWidget.scss";
 
-import "./../../services/FakeBackend";
-
 export class IssueListingWidget extends Component {
 
     renderIssueListItems(listArray) {
@@ -17,7 +15,7 @@ export class IssueListingWidget extends Component {
                     <li
                         className="list-item"
                         key={object['issue-title']}
-                        onClick={() => this.props.onPostSelect(object)}
+                        onClick={() => this.props.onIssueSelect(object)}
                     >
                         <p className="list-item-text">{object['issue-title']}</p>
                      </li>)
@@ -30,9 +28,9 @@ export class IssueListingWidget extends Component {
 
 
         var issueListing = null;
-        if (!_.isEmpty(this.props.allPosts)) {
-            issueListing = <ul className="listing-container">
-                {this.renderIssueListItems(this.props.allPosts)}
+        if (!_.isEmpty(this.props.allIssues)) {
+            issueListing = <ul className="listing-items-container">
+                {this.renderIssueListItems(this.props.allIssues)}
             </ul>
         } else {
             issueListing = <div>
@@ -40,18 +38,21 @@ export class IssueListingWidget extends Component {
             </div>
         }
         return (
-            <div>
-                <div>
-                    <p>Issues</p>
-                    <Link to="/new">
-                        <button className="new-issue-button">
-                            Create new issue
-                        </button>
-                    </Link>
+            <div className="listing-container">
+                <div className="listing-header">
+                    <div className="issue-title-text">Issues</div>
+                    <div className="flex">
+                        <Link to="/new">
+                            <button className="new-issue-button">
+                                + new issue
+                            </button>
+                        </Link>
+                    </div>
                 </div>
-                <div>
-                    <input className="search-filter" />
-                </div>
+                    <input
+                        className="search-filter"
+                        placeholder="Filter results"
+                    />
                 {issueListing}
             </div>
 
@@ -60,6 +61,6 @@ export class IssueListingWidget extends Component {
 }
 
 IssueListingWidget.propTypes = {
-    allPosts: PropTypes.array,
-    onPostSelect: PropTypes.func
+    allIssues: PropTypes.array,
+    onIssueSelect: PropTypes.func
 };

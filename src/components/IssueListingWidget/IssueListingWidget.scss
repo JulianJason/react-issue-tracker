@@ -1,9 +1,38 @@
 .listing-container {
+  margin: 8px;
+  .listing-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    .issue-title-text {
+
+      font-size: 20px;
+      margin: 0 8px;
+    }
+
+    .new-issue-button {
+      padding: 1px;
+      background-color: darkgreen;
+      box-shadow: forestgreen;
+      color: white;
+      border-radius: 6px;
+    }
+
+  }
+
+  .search-filter {
+    margin: 8px;
+    width: 90%;
+  }
+}
+
+.listing-items-container {
+  padding-left: 8px;
   .list-item {
 
     text-align: left;
-    padding-left: 10px;
-
+    list-style-type: none;
+    border-bottom: 1px solid grey;
     .list-item-text {
       font-size: 10px;
       font-family: "Courier New", "Arial";

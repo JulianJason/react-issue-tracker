@@ -2,24 +2,24 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import _ from 'lodash';
 
-import "./ChartsWidget.scss";
+import "./OverviewWidget.scss";
 
-export class ChartsWidget extends Component {
+export class OverviewWidget extends Component {
 
 
     renderTypeMap(typeMap) {
         return _.map(typeMap, function(value, key) {
-            return <p className="charts-text" key={key}>{key}(s): {value}</p>
+            return <p className="charts-text" key={key}>{key}: {value}</p>
         });
     }
     render() {
 
         const typeMap = {};
-        if (this.props.allPosts !== null) {
-            console.log(JSON.stringify(this.props.allPosts,null,2));
-            this.props.allPosts.forEach(function(issue) {
+        if (this.props.allIssues !== null) {
+            console.log(JSON.stringify(this.props.allIssues,null,2));
+            this.props.allIssues.forEach(function(issue) {
                 typeMap[issue['issue-type']] = (typeMap[issue['issue-type']] || 0) + 1;
-                if (issue['issue-closed'] === false) typeMap['open issue'] = (typeMap['open issue'] || 0)+1;
+                if (issue['issue-closed'] === false) typeMap['Open'] = (typeMap['Open'] || 0)+1;
 
             })
         }
@@ -32,6 +32,6 @@ export class ChartsWidget extends Component {
     }
 }
 
-ChartsWidget.propTypes = {
-    allPosts: PropTypes.array
+OverviewWidget.propTypes = {
+    allIssues: PropTypes.array
 };

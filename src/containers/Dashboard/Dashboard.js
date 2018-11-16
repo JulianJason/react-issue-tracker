@@ -6,7 +6,7 @@ import './Dashboard.scss';
 
 import { Row, Col } from 'react-grid-system'
 import {
-    ChartsWidget,
+    OverviewWidget,
     IssueListingWidget,
     ViewIssueWidget,
     LoginModal,
@@ -62,9 +62,9 @@ export class Dashboard extends Component {
             <div className="body-layout-master">
                 <Row className="body-layout-row">
                     <Col className="sidebar" sm={3}>
-                        <ChartsWidget allPosts={this.state.allIssuesArray}/>
+                        <OverviewWidget allIssues={this.state.allIssuesArray}/>
                         <div className="separator"/>
-                        <IssueListingWidget allPosts={this.state.allIssuesArray} onIssueSelect={this.onIssueSelect}/>
+                        <IssueListingWidget allIssues={this.state.allIssuesArray} onIssueSelect={this.onIssueSelect}/>
 
                     </Col>
 
