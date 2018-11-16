@@ -83,7 +83,7 @@ export class NewIssueWidget extends Component {
     }
     render() {
         return (
-            <div className="new-issue-container">
+            <div className="new-issue-widget">
                 <div className="new-issue-header">
                     <input
                         name="title"

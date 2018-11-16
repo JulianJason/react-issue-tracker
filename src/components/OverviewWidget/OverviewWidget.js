@@ -9,7 +9,7 @@ export class OverviewWidget extends Component {
 
     renderTypeMap(typeMap) {
         return _.map(typeMap, function(value, key) {
-            return <p className="charts-text" key={key}>{key}: {value}</p>
+            return <p className="charts-text" key={key}>{_.startCase(key)}: {value}</p>
         });
     }
     render() {

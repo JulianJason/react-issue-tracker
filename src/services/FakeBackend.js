@@ -18,7 +18,7 @@ Storage.prototype.removeObj = function(key) {
 const postObjects = {
     1: {
         "issue-title": "Create Login Button",
-        "issue-type": "Improvement",
+        "issue-type": "improvement",
         "issue-closed": false,
         "issue-log": {
             1: {
@@ -45,7 +45,7 @@ const postObjects = {
     },
     2: {
         "issue-title": "Implement React Router",
-        "issue-type": "Improvement",
+        "issue-type": "improvement",
         "issue-closed": false,
         "issue-log": {
             1: {
