@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import getSlug from 'speakingurl';
 
 const keys = [];
 
@@ -66,22 +67,32 @@ const postObjects = {
     },
 };
 
+/**
+ * Note:
+ * Issues are the threads
+ * Posts are individual comments within an issue
+ *
+ */
+
 
 export default class FakeBackend {
+
+    // seed local storage to contain the issues sample above
     static seedBackend() {
         localStorage.clear();
         if (localStorage.length === 0) {
             _.forEach(postObjects, function(issue) {
                 FakeBackend.createNewIssue(issue);
-            })
-
+            });
         } else {
             console.log("Backend is not empty")
         }
     }
 
-    static getAllPosts() {
-        var allPosts = [];
+    /** Getter functions */
+    // fetches all posts from local storage
+    static getAllIssues() {
+        let allPosts = [];
         keys.forEach(function(key) {
             const issue = localStorage.getObj(key);
             allPosts.push(issue);
@@ -89,18 +100,42 @@ export default class FakeBackend {
         return allPosts
     }
 
-    static filterPosts() {
-        return null
+    // get a specific post from the back end
+    static getPost(slug) {
+        const key = getSlug(slug);
+        const obj = localStorage.getObj(key);
+        // console.log("Fetched " + JSON.stringify(obj, null, 2))
+        return obj
     }
 
+
+    /** Filter functions */
+    static filterIssuesByType(type) {
+        let allPosts = this.getAllIssues();
+
+        return _.filter(allPosts, function(issue) {
+            return issue['issue-type'] === type
+        })
+    }
+
+    // filters the post according to the type
+    static filterIssuesByName(searchString) {
+        let allPosts = this.getAllIssues();
+
+        return _.filter(allPosts, function(issue) {
+            return _.includes(issue['issue-title'], searchString)
+        })
+    }
+
+    /** Create functions */
     static createNewIssue(issueObject) {
-        const key = issueObject['issue-title'];
+        const key = getSlug(issueObject['issue-title']);
         keys.push(key);
         localStorage.setObj(key, issueObject);
-        console.log("Created new issue")
+        // console.log("Created new issue")
     }
 
-
+    // Appends a post to an issue
     static commentOnIssue(issueId, commentObject) {
         const beforeObject = JSON.parse( localStorage.getObj(issueId));
         const updatedObject = { ...beforeObject, commentObject};
@@ -109,8 +144,25 @@ export default class FakeBackend {
     }
 
 
+    /** Edit functions */
+    static editOnPost(issueId, postId, newContent) {
+        const beforeObject = JSON.parse(localStorage.getObj(issueId));
+        const updatedObject = _.update(beforeObject, ["issue-log", postId], newContent);
 
-    static getPost(postId) {
-        return JSON.parse( localStorage.getObj(postId))
+        localStorage.setObj(issueId, updatedObject);
+    }
+
+    static closeIssue(issueId) {
+        const beforeObject = JSON.parse(localStorage.getObj(issueId));
+        const updatedObject = _.update(beforeObject, "issue-closed", true);
+
+        localStorage.setObj(issueId, updatedObject);
+    }
+
+    static openIssue(issueId) {
+        const beforeObject = JSON.parse(localStorage.getObj(issueId));
+        const updatedObject = _.update(beforeObject, "issue-closed", false);
+
+        localStorage.setObj(issueId, updatedObject);
     }
 }
