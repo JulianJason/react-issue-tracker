@@ -32,6 +32,7 @@
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
+    "keymirror": "^0.1.1",
     "lodash": "^4.17.11",
     "mini-css-extract-plugin": "0.4.3",
     "moment": "^2.22.2",
@@ -47,7 +48,10 @@
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.6.3",
     "react-grid-system": "^4.3.1",
+    "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
     "resolve": "1.8.1",
     "sass-loader": "^7.1.0",
     "speakingurl": "^14.0.1",
@@ -115,7 +119,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-syntax-export-default-from": "^7.0.0",
     "babel-plugin-module-resolver": "^3.1.1",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "redux-devtools": "^3.4.2",
+    "redux-devtools-extension": "^2.13.5"
   }
 }

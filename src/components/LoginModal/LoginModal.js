@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import './LoginModal.scss'
+import { userLoginAction, userLogoutAction } from "../../actions/auth";
 
-export class LoginModal extends Component {
+class LoginModal extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
-    }
 
-    getUsernameValue() {
-        return this.refs.username.value;
-    }
-
-    getPasswordValue() {
-        return this.refs.password.value;
-    }
-
-    handleSubmit() {
-        this.props.loginUser(this.getUsernameValue(), this.getPasswordValue());
+        this.state = {
+            username: '',
+            password: '',
+        }
     }
 
     handleLogout() {
@@ -31,21 +26,36 @@ export class LoginModal extends Component {
             return (
                 <div>
                     <p>Authenticated!</p>
-                    <input onClick={this.handleLogout} type="submit" value="Logout" />
+                    <button onClick={this.props.dispatchLogout} type="submit" value="Logout" />
                 </div>
             );
         }
 
         return (
-            <div className="modal display-block" onClick={null}>
+            <div className="modal display-block" onClick={this.props.hideLoginModal}>
                 <section className="modal-main fade-in">
 
                     <p className="login-modal-text">Sign in to Tiger Track</p>
-                    <input type="text" ref="username" placeholder="Username" /><p />
-                    <input type="password" ref="password" placeholder="Password" /><p />
-                    <button className="login-button" onClick={this.handleSubmit} type="submit">Login</button>
-                    <p className="forgot-password-text"> </p>
-                    <button className="login-button" onClick={null} type="submit"> Sign up</button>
+                    <input
+                        type="text"
+                        value={this.state.username}
+                        onChange={event => this.setState({username: event.target.value})}
+                        placeholder="Username"
+
+                    />
+                    <input
+                        type="password"
+                        value={this.state.password}
+                        onChange={event => this.setState({password: event.target.value})}
+                        placeholder="Password" />
+                    <button
+                        className="login-button"
+                        onClick={() => this.props.dispatchLogin(this.state.username, this.state.password)}
+                        type="submit"
+                        disabled={_.isEmpty(this.state.username) || _.isEmpty(this.state.password)}
+                    >
+                        Login
+                    </button>
                 </section>
             </div>
         );
@@ -53,7 +63,20 @@ export class LoginModal extends Component {
 }
 
 LoginModal.propTypes = {
-    loginUser: PropTypes.func.isRequired,
-    logoutUser: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool
+    logoutUser: PropTypes.func.isRequired
 };
+
+const mapStateToProps = state => ({
+    authData: state.authReducer.authData
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatchLogin: (username, password) => {
+        dispatch(userLoginAction(username, password))
+    },
+    dispatchLogout: () => {
+        dispatch(userLogoutAction())
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

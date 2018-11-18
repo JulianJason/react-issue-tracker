@@ -1,3 +1,5 @@
+import LoginModal from "./LoginModal/LoginModal";
+
 export { Header } from './Header/Header';
 export { Footer } from './Footer/Footer';
 
@@ -7,4 +9,4 @@ export { IssueListingWidget } from './IssueListingWidget/IssueListingWidget';
 export { ViewIssuePanel } from '../containers/ViewIssuePanel/ViewIssuePanel';
 export { NewIssueWidget } from './NewIssueWidget/NewIssueWidget';
 
-export { LoginModal } from './LoginModal/LoginModal';
+export LoginModal from "./LoginModal/LoginModal";

@@ -5,7 +5,7 @@ import _ from 'lodash';
 import "./ViewIssuePanel.scss";
 
 import { ViewIssuePost } from "../../components/ViewIssuePost/ViewIssuePost";
-import FakeBackend from "../../services/FakeBackend";
+import MockAPI from "../../services/MockAPI";
 
 export class ViewIssuePanel extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ export class ViewIssuePanel extends Component {
 
     // for initial load
     componentDidMount() {
-        const post = FakeBackend.getPost(this.props.match.params['slug']);
+        const post = MockAPI.getPost(this.props.match.params['slug']);
         this.setState({ selectedPost: post})
     }
 
@@ -30,7 +30,7 @@ export class ViewIssuePanel extends Component {
     componentWillReceiveProps(nextProps) {
         let updatedPost;
         if (nextProps.match.params.slug !== this.props.match.params.slug) {
-            updatedPost = FakeBackend.getPost(nextProps.match.params['slug']);
+            updatedPost = MockAPI.getPost(nextProps.match.params['slug']);
         }
 
         if (nextProps.selectedIssue !== this.props.selectedIssue) {

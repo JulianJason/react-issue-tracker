@@ -76,14 +76,14 @@ const postObjects = {
  */
 
 
-export default class FakeBackend {
+export default class MockAPI {
 
     // seed local storage to contain the issues sample above
     static seedBackend() {
         localStorage.clear();
         if (localStorage.length === 0) {
             _.forEach(postObjects, function(issue) {
-                FakeBackend.createNewIssue(issue);
+                MockAPI.createNewIssue(issue);
             });
         } else {
             console.log("Backend is not empty")
@@ -175,5 +175,13 @@ export default class FakeBackend {
         const updatedObject = _.update(beforeObject, "issue-closed", false);
 
         localStorage.setObj(issueId, updatedObject);
+    }
+
+    /** Auth functions */
+    static loginUser(username, password) {
+        return {
+            username,
+            error: false
+        }
     }
 }

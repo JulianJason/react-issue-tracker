@@ -25,7 +25,7 @@ export class Header extends Component {
                 </Col>
 
                 <Col className="header-right" sm={6}>
-                    <div className="nav-bar-button float-right" onClick={this.props.handleLogin}>
+                    <div className="nav-bar-button float-right" onClick={this.props.showLoginModal}>
                         Login
                     </div>
                 </Col>
@@ -37,16 +37,3 @@ Header.propTypes = {
     //handleLogin: PropTypes.func.isRequired
 };
 
-
-/**
- *
- <div className="nav-bar-button">
- <Link to="/">Home</Link>
- </div>
- <div className="nav-bar-button">
- <Link to="/explore">Explore</Link>
- </div>
- <div className="nav-bar-button">
- <Link to="/analytics">Analytics</Link>
- </div>
- */

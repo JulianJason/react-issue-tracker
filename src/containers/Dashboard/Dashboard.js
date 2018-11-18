@@ -9,11 +9,10 @@ import {
     OverviewWidget,
     IssueListingWidget,
     ViewIssuePanel,
-    LoginModal,
     NewIssueWidget
 } from "../../components/index.js";
 
-import FakeBackend from "../../services/FakeBackend";
+import MockAPI from "../../services/MockAPI";
 import {AnalyticsPanel} from "../AnalyticsPanel/AnalyticsPanel";
 
 const Home = () => (
@@ -33,33 +32,26 @@ export class Dashboard extends Component {
     }
 
     componentDidMount() {
-        this.putIssuesToState(FakeBackend.getAllIssues());
-        this.setState({allIssuesArray: FakeBackend.getAllIssues()})
+        this.putIssuesToState(MockAPI.getAllIssues());
+        this.setState({allIssuesArray: MockAPI.getAllIssues()})
     }
 
     putIssuesToState(issuesArray) {
         this.setState({allIssuesArray: issuesArray})
     }
 
-    showLoginModal = () => {
-        this.setState({ isLoginModalShown: true });
-    };
-
-    hideLoginModal = () => {
-        this.setState({ isLoginModalShown: true });
-    };
 
     onIssueSelect = (issue) => {
         this.setState({ selectedIssue: issue });
     };
 
     onIssueSubmit = (issue) => {
-        FakeBackend.createNewIssue(issue);
-        this.putIssuesToState(FakeBackend.getAllIssues());
+        MockAPI.createNewIssue(issue);
+        this.putIssuesToState(MockAPI.getAllIssues());
     };
 
     onPostEdit = (issueId, postId, newContent) => {
-        const selectedIssue = FakeBackend.editPost(issueId, postId, newContent);
+        const selectedIssue = MockAPI.editPost(issueId, postId, newContent);
         this.setState({
             selectedIssue
         })
@@ -86,7 +78,6 @@ export class Dashboard extends Component {
                     </Col>
                 </Row>
 
-                {this.state.isLoginModalShown ? <LoginModal loginUser={null} logoutUser={null} /> : null}
             </div>
         )
 
