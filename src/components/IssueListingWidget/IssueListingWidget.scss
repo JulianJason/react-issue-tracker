@@ -29,10 +29,10 @@
 .listing-items-container {
   padding-left: 8px;
   .list-item {
-
     text-align: left;
     list-style-type: none;
     border-bottom: 1px solid grey;
+    cursor: pointer;
     .list-item-text {
       font-size: 10px;
       font-family: "Courier New", "Arial";

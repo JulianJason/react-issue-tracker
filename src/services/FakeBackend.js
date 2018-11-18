@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import getSlug from 'speakingurl';
+import moment from 'moment';
 
 const keys = [];
 
@@ -129,9 +130,14 @@ export default class FakeBackend {
 
     /** Create functions */
     static createNewIssue(issueObject) {
+
+        // append datetime on server side
+        const updatedObject = _.set(issueObject, 'issue-log.1.datetime', moment.now());
+
+        // get the issue Id aka the slug
         const key = getSlug(issueObject['issue-title']);
         keys.push(key);
-        localStorage.setObj(key, issueObject);
+        localStorage.setObj(key, updatedObject);
         // console.log("Created new issue")
     }
 
@@ -145,11 +151,16 @@ export default class FakeBackend {
 
 
     /** Edit functions */
-    static editOnPost(issueId, postId, newContent) {
-        const beforeObject = JSON.parse(localStorage.getObj(issueId));
-        const updatedObject = _.update(beforeObject, ["issue-log", postId], newContent);
+    static editPost(issueTitle, postIndex, newContent) {
+        const beforeObject = this.getPost(issueTitle);
+        console.log("before " + JSON.stringify(beforeObject, null, 2));
+        console.log("New content is " + JSON.stringify(newContent));
+        const updatedObject = _.set(beforeObject, ["issue-log", postIndex, "description"], newContent);
 
-        localStorage.setObj(issueId, updatedObject);
+        console.log("after " + JSON.stringify(updatedObject, null, 2));
+
+        localStorage.setObj(issueTitle, updatedObject);
+        return updatedObject;
     }
 
     static closeIssue(issueId) {

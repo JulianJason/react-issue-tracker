@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 import './AnalyticsPanel.scss';
 
-import { Row, Col } from 'react-grid-system'
-import { ViewIssueWidget } from "../../components/index.js";
+// import { Row, Col } from 'react-grid-system'
+import { ViewIssuePanel } from "../../components/index.js";
 import {LoginModal} from "../../components";
 
 export class AnalyticsPanel extends Component {
@@ -27,7 +27,7 @@ export class AnalyticsPanel extends Component {
     render() {
         return (
             <div className="body-layout-master">
-                <ViewIssueWidget/>
+                <ViewIssuePanel/>
 
                 {this.state.isLoginModalShown ? <LoginModal loginUser={null} logoutUser={null} /> : null}
             </div>

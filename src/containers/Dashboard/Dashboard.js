@@ -8,7 +8,7 @@ import { Row, Col } from 'react-grid-system'
 import {
     OverviewWidget,
     IssueListingWidget,
-    ViewIssueWidget,
+    ViewIssuePanel,
     LoginModal,
     NewIssueWidget
 } from "../../components/index.js";
@@ -28,17 +28,19 @@ export class Dashboard extends Component {
         this.state = {
             isLoginModalShown: false,
             allIssuesArray: null,
-            selectedIssues: null
+            selectedIssue: null
         };
     }
 
     componentDidMount() {
-        this.putIssuesToState(FakeBackend.getAllPosts());
+        this.putIssuesToState(FakeBackend.getAllIssues());
+        this.setState({allIssuesArray: FakeBackend.getAllIssues()})
     }
 
     putIssuesToState(issuesArray) {
         this.setState({allIssuesArray: issuesArray})
     }
+
     showLoginModal = () => {
         this.setState({ isLoginModalShown: true });
     };
@@ -48,14 +50,20 @@ export class Dashboard extends Component {
     };
 
     onIssueSelect = (issue) => {
-        this.setState({ selectedIssues: issue });
+        this.setState({ selectedIssue: issue });
     };
 
     onIssueSubmit = (issue) => {
         FakeBackend.createNewIssue(issue);
-        this.putIssuesToState(FakeBackend.getAllPosts());
+        this.putIssuesToState(FakeBackend.getAllIssues());
     };
 
+    onPostEdit = (issueId, postId, newContent) => {
+        const selectedIssue = FakeBackend.editPost(issueId, postId, newContent);
+        this.setState({
+            selectedIssue
+        })
+    };
     render() {
 
         return (
@@ -72,7 +80,7 @@ export class Dashboard extends Component {
                         <Switch>
                             <Route path ="/" exact component={Home} />
                             <Route path="/analytics" component={AnalyticsPanel} />
-                            <Route path="/view" component={ViewIssueWidget} />
+                            <Route path="/view/:slug" render={(props) => <ViewIssuePanel {...props} onPostEdit={this.onPostEdit} selectedIssue={this.state.selectedIssue}/>} />
                             <Route path="/new" render={() => <NewIssueWidget onIssueSubmit={this.onIssueSubmit} />}/>
                         </Switch>
                     </Col>

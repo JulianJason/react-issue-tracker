@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import getSlug from 'speakingurl';
 
 import "./IssueListingWidget.scss";
 
@@ -17,7 +18,9 @@ export class IssueListingWidget extends Component {
                         key={object['issue-title']}
                         onClick={() => this.props.onIssueSelect(object)}
                     >
-                        <p className="list-item-text">{object['issue-title']}</p>
+                        <Link to={"/view/" + getSlug(object['issue-title'])}>
+                            <p className="list-item-text">{object['issue-title']}</p>
+                        </Link>
                      </li>)
             ));
 

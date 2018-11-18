@@ -1,0 +1,33 @@
+.view-issue-container {
+  width: 55%;
+  box-sizing: border-box;
+  display: block;
+  margin-left: 24px;
+  .view-issue-header {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: "Courier New";
+    border-bottom: 2px solid slategrey;
+    align-items: flex-start;
+
+    .view-issue-header-title {
+    }
+
+    .view-issue-header-type {
+
+    }
+  }
+
+  .view-issue-body {
+
+  }
+}
+@media only screen and (max-width: 768px) {
+  .view-issue-container {
+    width: 80vw;
+
+  }
+}

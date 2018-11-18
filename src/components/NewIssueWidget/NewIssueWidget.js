@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import moment from 'moment';
 import _ from 'lodash';
 
 import "./NewIssueWidget.scss";
@@ -71,7 +70,7 @@ export class NewIssueWidget extends Component {
                         "type": "post",
                         "description": body,
                         "author": "AAA",
-                        "datetime": moment()
+                        "datetime": null
                         }
                 }
             };
