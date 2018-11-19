@@ -181,7 +181,8 @@ export default class MockAPI {
     }
 
     /** Auth functions */
-    static loginUser(username, password) {
+    static async loginUser(payload) {
+        const { username } = payload;
         return {
             username,
             error: false

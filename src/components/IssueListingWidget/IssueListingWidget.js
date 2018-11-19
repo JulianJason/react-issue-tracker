@@ -5,7 +5,7 @@ import _ from 'lodash';
 import getSlug from 'speakingurl';
 
 import "./IssueListingWidget.scss";
-import {userLoginAction, userLogoutAction} from "../../actions/auth";
+import {loadIssuesListAction} from "../../actions/issues";
 import {connect} from "react-redux";
 
 export class IssueListingWidget extends Component {
@@ -75,7 +75,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    dispatchLoadIssuesList: () => {
+        dispatch(loadIssuesListAction())
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(IssueListingWidget);

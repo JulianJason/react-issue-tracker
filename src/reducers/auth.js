@@ -21,11 +21,11 @@ function authReducer(state = authInitialState, action) {
                 isAuthenticating: true,
             };
         case USER_LOGIN_SUCCESS:
-            return{
+            return {
                 ...state,
                 isAuthenticating: false,
                 authData: {
-                    userName: action.response.username
+                    username: action.response.username
                 }
             };
         case USER_LOGIN_FAILED:

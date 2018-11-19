@@ -6,6 +6,16 @@
   background-color: #222222;
   z-index: 100;
   padding-left: 15px;
+
+
+  .welcome-text {
+    color: white;
+    text-align: center;
+    font-size: 1.1em;
+    margin-right: 28px;
+  }
+
+
   .nav-bar-button {
     min-width: 100px;
     display: inline-block;
@@ -63,4 +73,6 @@
 }
 
 
-
+.highest-z-index {
+  z-index: 1000;
+}

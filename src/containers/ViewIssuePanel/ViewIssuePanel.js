@@ -47,8 +47,13 @@ export class ViewIssuePanel extends Component {
 
             return (
                 <div className="view-issue-header">
-                    <p className="view-issue-header-title">{post['issue-title']}</p>
-                    <p className="view-issue-header-type">- {_.startCase(post['issue-type'])}</p>
+                    <div>
+                        <p className="view-issue-header-title">{post['issue-title']}</p>
+                        <p className="view-issue-header-type">- {_.startCase(post['issue-type'])}</p>
+                    </div>
+                    <div>
+                        <div className="">Open</div>
+                    </div>
                 </div>
             )
         } else {
@@ -57,7 +62,6 @@ export class ViewIssuePanel extends Component {
     }
 
     onPostEdit(index, content) {
-        console.log("issue-title is " + this.state.selectedPost['issue-title']);
         this.props.onPostEdit(this.state.selectedPost['issue-title'], index, content);
     }
 
@@ -72,7 +76,7 @@ export class ViewIssuePanel extends Component {
                                    author={postLog['author']}
                                    description={postLog['description']}
                                    datetime={postLog['datetime']}
-                                   user="JulianJason"
+                                   authData={this.props.authData}
                                    onPostEdit={self.onPostEdit}
                                    postIndex={key}
                     />
@@ -108,12 +112,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    dispatchLogin: (username, password) => {
-        dispatch(userLoginAction(username, password))
-    },
-    dispatchLogout: () => {
-        dispatch(userLogoutAction())
-    }
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewIssuePanel);

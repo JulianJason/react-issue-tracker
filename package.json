@@ -48,6 +48,7 @@
     "react-dev-utils": "^6.1.1",
     "react-dom": "^16.6.3",
     "react-grid-system": "^4.3.1",
+    "react-outside-click-handler": "^1.2.2",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",

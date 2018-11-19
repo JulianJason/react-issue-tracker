@@ -1,3 +1,4 @@
+import { delay } from 'redux-saga';
 import { take, put, call } from 'redux-saga/effects';
 import MockAPI from "../services/MockAPI";
 
@@ -13,6 +14,7 @@ import {
 export function* watchUserLogin() {
     while(true) {
         const { payload } = yield take(USER_LOGIN);
+        yield call(delay, 3000);
         yield call(loginUserSaga, payload)
     }
 }

@@ -5,7 +5,7 @@ import _ from 'lodash';
 import "./NewIssueWidget.scss";
 import {userLoginAction, userLogoutAction} from "../../actions/auth";
 import {connect} from "react-redux";
-import {createNewIssueAction} from "../../actions/Issues";
+import {createNewIssueAction} from "../../actions/issues";
 
 export class NewIssueWidget extends Component {
     constructor(props) {

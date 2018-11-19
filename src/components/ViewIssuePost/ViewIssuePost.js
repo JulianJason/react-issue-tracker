@@ -5,7 +5,7 @@ import "./ViewIssuePost.scss";
 import _ from "lodash";
 import { userLoginAction, userLogoutAction } from "../../actions/auth";
 import { connect } from "react-redux";
-import { loadIssueAction } from "../../actions/Issues";
+import { loadIssueAction } from "../../actions/issues";
 
 export class ViewIssuePost extends Component {
     constructor(props) {
