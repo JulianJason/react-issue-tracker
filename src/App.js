@@ -4,8 +4,8 @@ import './App.css';
 import _ from 'lodash';
 
 // root-level components
-import { Header } from "./components/index";
-import { Dashboard } from "./containers/Dashboard/Dashboard";
+import Header  from "./containers/Header/Header";
+import Dashboard from "./containers/Dashboard/Dashboard";
 
 
 

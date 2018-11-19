@@ -61,9 +61,9 @@ function* loadIssueListSaga() {
 }
 
 /** LOAD ISSUE */
-export function* watchLoadIssue(payload) {
+export function* watchLoadIssue() {
     while(true) {
-        yield take(LOAD_ISSUE);
+        const { payload } = yield take(LOAD_ISSUE);
         yield call(loadIssueSaga, payload);
 
     }

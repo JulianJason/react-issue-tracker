@@ -9,7 +9,7 @@ import MockAPI from "../../services/MockAPI";
 import {userLoginAction, userLogoutAction} from "../../actions/auth";
 import {connect} from "react-redux";
 
-export class ViewIssuePanel extends Component {
+class ViewIssuePanel extends Component {
     constructor(props) {
         super(props);
 
@@ -20,27 +20,6 @@ export class ViewIssuePanel extends Component {
         };
         this.onPostEdit = this.onPostEdit.bind(this);
     }
-
-
-    // for initial load
-    componentDidMount() {
-        const post = MockAPI.getIssue(this.props.match.params['slug']);
-        this.setState({ selectedPost: post})
-    }
-
-    // for subsequent loads
-    componentWillReceiveProps(nextProps) {
-        let updatedPost;
-        if (nextProps.match.params.slug !== this.props.match.params.slug) {
-            updatedPost = MockAPI.getIssue(nextProps.match.params['slug']);
-        }
-
-        if (nextProps.selectedIssue !== this.props.selectedIssue) {
-            updatedPost = nextProps.selectedIssue;
-        }
-        this.setState({ selectedPost: updatedPost})
-    }
-
 
     renderPostHeader(post) {
         if (!_.isEmpty(post)) {
@@ -76,7 +55,7 @@ export class ViewIssuePanel extends Component {
                                    author={postLog['author']}
                                    description={postLog['description']}
                                    datetime={postLog['datetime']}
-                                   authData={this.props.authData}
+                                   authData={self.props.authData}
                                    onPostEdit={self.onPostEdit}
                                    postIndex={key}
                     />
@@ -94,9 +73,9 @@ export class ViewIssuePanel extends Component {
     render() {
         return (
             <div className="view-issue-container">
-                {this.renderPostHeader(this.state.selectedPost)}
+                {this.renderPostHeader(this.props.selectedIssue)}
                 <div className="view-issue-body">
-                    {this.renderPostBody(this.state.selectedPost, this)}
+                    {this.renderPostBody(this.props.selectedIssue, this)}
                 </div>
             </div>
         );
@@ -108,7 +87,8 @@ ViewIssuePanel.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    authData: state.authReducer.authData
+    authData: state.authReducer.authData,
+    selectedIssue: state.issuesReducer.selectedIssue
 });
 
 const mapDispatchToProps = dispatch => ({

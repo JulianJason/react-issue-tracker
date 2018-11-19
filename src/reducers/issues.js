@@ -47,7 +47,7 @@ function issuesReducer(state = issuesInitialState, action) {
             return {
                 ...state,
                 isFetchingList: true,
-                issuesList: action.response.issuesList
+                issuesList: action.issuesList
             };
         case LOAD_ISSUES_LIST_SUCCESS:
             return {
@@ -70,7 +70,7 @@ function issuesReducer(state = issuesInitialState, action) {
             return {
                 ...state,
                 isFetching: false,
-                selectedIssue: action.response.issueObject
+                selectedIssue: action.response.selectedIssue
             };
         case LOAD_ISSUE_FAILED:
             return {

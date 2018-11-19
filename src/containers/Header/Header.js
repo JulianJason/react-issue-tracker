@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Row, Col } from 'react-grid-system';
 import { connect } from 'react-redux';
-import { LoginModal } from "../";
+import { LoginModal } from "../../components/index";
 import _ from 'lodash';
 
 import './Header.scss';

@@ -14,7 +14,7 @@ import {
 export function* watchUserLogin() {
     while(true) {
         const { payload } = yield take(USER_LOGIN);
-        yield call(delay, 3000);
+        yield call(delay, 1000);
         yield call(loginUserSaga, payload)
     }
 }

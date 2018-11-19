@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import _ from 'lodash';
 
-import "./NewIssueWidget.scss";
+import "./NewIssuePanel.scss";
 import {userLoginAction, userLogoutAction} from "../../actions/auth";
 import {connect} from "react-redux";
 import {createNewIssueAction} from "../../actions/issues";
 
-export class NewIssueWidget extends Component {
+export class NewIssuePanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -134,7 +134,7 @@ export class NewIssueWidget extends Component {
     }
 }
 
-NewIssueWidget.propTypes = {
+NewIssuePanel.propTypes = {
     onIssueSubmit: PropTypes.func.isRequired
 };
 
@@ -145,4 +145,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(null, mapDispatchToProps)(NewIssueWidget);
+export default connect(null, mapDispatchToProps)(NewIssuePanel);

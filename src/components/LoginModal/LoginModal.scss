@@ -23,6 +23,9 @@
     text-align: center;
   }
 
+  .login-input {
+    margin: 10px
+  }
   .login-modal-text {
     font-size: 16px;
     font-weight: 600;
@@ -30,6 +33,7 @@
   }
 
   .login-button {
+    margin-top: 18px;
     background-color: #cc9933;
     border-radius: 8px;
     width: 55%;

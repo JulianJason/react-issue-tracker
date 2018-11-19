@@ -6,7 +6,6 @@ import getSlug from 'speakingurl';
 
 import "./IssueListingWidget.scss";
 import {loadIssuesListAction} from "../../actions/issues";
-import {connect} from "react-redux";
 
 export class IssueListingWidget extends Component {
 
@@ -18,7 +17,7 @@ export class IssueListingWidget extends Component {
                     <li
                         className="list-item"
                         key={object['issue-title']}
-                        onClick={() => this.props.onIssueSelect(object)}
+                        onClick={() => this.props.onIssueSelect(object['issue-title'])}
                     >
                         <Link to={"/view/" + getSlug(object['issue-title'])}>
                             <p className="list-item-text">{object['issue-title']}</p>
@@ -46,13 +45,14 @@ export class IssueListingWidget extends Component {
             <div className="listing-container">
                 <div className="listing-header">
                     <div className="issue-title-text">Issues</div>
-                    <div className="flex">
-                        <Link to="/new">
-                            <button className="new-issue-button">
-                                + new issue
-                            </button>
-                        </Link>
-                    </div>
+                    {!_.isEmpty(this.props.authData.username) ?
+                        <div className="flex">
+                            <Link to="/new">
+                                <button className="new-issue-button">
+                                    + new issue
+                                </button>
+                            </Link>
+                        </div> : null }
                 </div>
                     <input
                         className="search-filter"
@@ -66,7 +66,7 @@ export class IssueListingWidget extends Component {
 }
 
 IssueListingWidget.propTypes = {
-    allIssues: PropTypes.array,
+    issuesList: PropTypes.array,
     onIssueSelect: PropTypes.func
 };
 
@@ -80,4 +80,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(IssueListingWidget);
+export default (IssueListingWidget);

@@ -17,6 +17,10 @@ class LoginModal extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.isAuthenticating && !_.isEmpty(this.props.authData.username) ) {
+            this.setState({
+                username: '',
+                password: '',
+            });
             this.props.hideModal();
         }
     }
@@ -25,22 +29,25 @@ class LoginModal extends Component {
             <section className={"modal-main fade-in"}>
                 <p> You are logged out</p>
             </section>
-        )
+        );
 
         const loginForm = (
             <section className={"modal-main fade-in"}>
                 <p className="login-modal-text">Sign in to Tiger Track</p>
-                <input
-                    type="text"
-                    value={this.state.username}
-                    onChange={event => this.setState({username: event.target.value})}
-                    placeholder="Username"
-                />
-                <input
-                    type="password"
-                    value={this.state.password}
-                    onChange={event => this.setState({password: event.target.value})}
-                    placeholder="Password" />
+                <form>
+                    <input
+                        className={"login-input"}
+                        type="text"
+                        value={this.state.username}
+                        onChange={event => this.setState({username: event.target.value})}
+                        placeholder="Username"
+                    />
+                    <input
+                        type="password"
+                        value={this.state.password}
+                        onChange={event => this.setState({password: event.target.value})}
+                        placeholder="Password" />
+                </form>
                 <button
                     className="login-button"
                     onClick={() => this.props.handleLogin(this.state.username, this.state.password)}

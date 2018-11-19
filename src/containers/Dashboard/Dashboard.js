@@ -1,26 +1,33 @@
 import React, { Component } from "react";
-import _ from 'lodash';
+import PropTypes from "prop-types";
+import { Row, Col } from 'react-grid-system'
+import { connect } from 'react-redux';
 import { Switch, Route } from "react-router-dom";
+import _ from 'lodash';
 
 import './Dashboard.scss';
 
-import { Row, Col } from 'react-grid-system'
 import {
-    OverviewWidget,
-    IssueListingWidget,
+    AnalyticsPanel,
+    Sidebar,
     ViewIssuePanel,
-    NewIssueWidget
-} from "../../components/index.js";
+    NewIssuePanel
+} from "../";
 
+import {
+    userLoginAction,
+    userLogoutAction
+} from "../../actions/auth";
 import MockAPI from "../../services/MockAPI";
-import {AnalyticsPanel} from "../AnalyticsPanel/AnalyticsPanel";
+
 
 const Home = () => (
-    <div>
-        <h2> Home </h2>
+    <div className={"home"}>
+        <h2> Welcome to Tiger Track </h2>
+        <h2> Please login to begin</h2>
     </div>
 );
-export class Dashboard extends Component {
+class Dashboard extends Component {
     constructor(props) {
         super(props);
 
@@ -62,24 +69,35 @@ export class Dashboard extends Component {
             <div className="body-layout-master">
                 <Row className="body-layout-row">
                     <Col className="sidebar" sm={3}>
-                        <OverviewWidget allIssues={this.state.allIssuesArray}/>
-                        <div className="separator"/>
-                        <IssueListingWidget allIssues={this.state.allIssuesArray} onIssueSelect={this.onIssueSelect}/>
-
+                        <Sidebar />
                     </Col>
 
                     <Col className="body-layout-col" sm={9}>
                         <Switch>
                             <Route path ="/" exact component={Home} />
                             <Route path="/analytics" component={AnalyticsPanel} />
+                            <Route path="/new" exact component={NewIssuePanel} />
                             <Route path="/view/:slug" render={(props) => <ViewIssuePanel {...props} onPostEdit={this.onPostEdit} selectedIssue={this.state.selectedIssue}/>} />
-                            <Route path="/new" render={() => <NewIssueWidget onIssueSubmit={this.onIssueSubmit} />}/>
                         </Switch>
                     </Col>
                 </Row>
 
             </div>
         )
-
     }
 }
+
+Dashboard.propTypes = {
+    showLoginModal: PropTypes.func.isRequired,
+};
+
+
+const mapStateToProps = state => ({
+    authData: state.authReducer.authData,
+    isAuthenticating: state.authReducer.isAuthenticating
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(mapStateToProps , mapDispatchToProps)(Dashboard);

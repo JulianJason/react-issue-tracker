@@ -15,8 +15,8 @@ export class OverviewWidget extends Component {
     render() {
 
         const typeMap = {};
-        if (this.props.allIssues !== null) {
-            this.props.allIssues.forEach(function(issue) {
+        if (this.props.issuesList !== null) {
+            _.forEach(this.props.issuesList, function(issue) {
                 typeMap[issue['issue-type']] = (typeMap[issue['issue-type']] || 0) + 1;
                 if (issue['issue-closed'] === false) typeMap['Open'] = (typeMap['Open'] || 0)+1;
 
@@ -32,5 +32,5 @@ export class OverviewWidget extends Component {
 }
 
 OverviewWidget.propTypes = {
-    allIssues: PropTypes.array
+    issuesList: PropTypes.array
 };

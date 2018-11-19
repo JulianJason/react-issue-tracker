@@ -104,9 +104,8 @@ export default class MockAPI {
     // get a specific post from the back end
     static getIssue(slug) {
         const key = getSlug(slug);
-        const obj = localStorage.getObj(key);
-        // console.log("Fetched " + JSON.stringify(obj, null, 2))
-        return obj
+        const selectedIssue = localStorage.getObj(key);
+        return { selectedIssue, error: false}
     }
 
 
