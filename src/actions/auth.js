@@ -6,7 +6,7 @@ import {
 export const userLoginAction = (username, password) => (
     {
         type: USER_LOGIN,
-        payload: {username, password}
+        payload: { username, password }
     }
 );
 

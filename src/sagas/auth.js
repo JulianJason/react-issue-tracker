@@ -1,10 +1,12 @@
 import { take, put, call } from 'redux-saga/effects';
-
 import MockAPI from "../services/MockAPI";
+
 import {
     USER_LOGIN,
     USER_LOGIN_SUCCESS,
-    USER_LOGIN_FAILED
+    USER_LOGIN_FAILED,
+
+    USER_LOGOUT
 } from "../actions/constants";
 
 /** USER LOGIN */
@@ -25,6 +27,12 @@ function* loginUserSaga(payload) {
         }
     } catch (error) {
         yield put({ type: USER_LOGIN_FAILED, response: { errorMessage: error }});
+    }
+}
 
+export function* watchUserLogout() {
+    while(true) {
+        yield take(USER_LOGOUT);
+        yield put({ type: USER_LOGOUT })
     }
 }

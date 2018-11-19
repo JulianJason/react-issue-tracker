@@ -5,6 +5,8 @@ import _ from 'lodash';
 import getSlug from 'speakingurl';
 
 import "./IssueListingWidget.scss";
+import {userLoginAction, userLogoutAction} from "../../actions/auth";
+import {connect} from "react-redux";
 
 export class IssueListingWidget extends Component {
 
@@ -31,9 +33,9 @@ export class IssueListingWidget extends Component {
 
 
         var issueListing = null;
-        if (!_.isEmpty(this.props.allIssues)) {
+        if (!_.isEmpty(this.props.issuesList)) {
             issueListing = <ul className="listing-items-container">
-                {this.renderIssueListItems(this.props.allIssues)}
+                {this.renderIssueListItems(this.props.issuesList)}
             </ul>
         } else {
             issueListing = <div>
@@ -67,3 +69,13 @@ IssueListingWidget.propTypes = {
     allIssues: PropTypes.array,
     onIssueSelect: PropTypes.func
 };
+
+const mapStateToProps = state => ({
+    issuesList: state.issuesReducer.issuesList
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(IssueListingWidget);

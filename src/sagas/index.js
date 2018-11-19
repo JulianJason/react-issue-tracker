@@ -1,12 +1,25 @@
 import { fork, all } from 'redux-saga/effects';
 
 import {
-    watchUserLogin
+    watchUserLogin,
+    watchUserLogout
 } from "./auth";
+
+import {
+    watchCreateNewIssue,
+    watchLoadIssue,
+    watchLoadIssuelist
+} from "./issues";
 
 function* sagaWatcher() {
     yield all([
-        fork(watchUserLogin)
+        // auth
+        fork(watchUserLogin),
+        fork(watchUserLogout),
+        // issues
+        fork(watchCreateNewIssue),
+        fork(watchLoadIssue),
+        fork(watchLoadIssuelist)
     ]);
 }
 

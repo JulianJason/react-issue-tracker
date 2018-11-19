@@ -6,6 +6,8 @@ import "./ViewIssuePanel.scss";
 
 import { ViewIssuePost } from "../../components/ViewIssuePost/ViewIssuePost";
 import MockAPI from "../../services/MockAPI";
+import {userLoginAction, userLogoutAction} from "../../actions/auth";
+import {connect} from "react-redux";
 
 export class ViewIssuePanel extends Component {
     constructor(props) {
@@ -22,7 +24,7 @@ export class ViewIssuePanel extends Component {
 
     // for initial load
     componentDidMount() {
-        const post = MockAPI.getPost(this.props.match.params['slug']);
+        const post = MockAPI.getIssue(this.props.match.params['slug']);
         this.setState({ selectedPost: post})
     }
 
@@ -30,7 +32,7 @@ export class ViewIssuePanel extends Component {
     componentWillReceiveProps(nextProps) {
         let updatedPost;
         if (nextProps.match.params.slug !== this.props.match.params.slug) {
-            updatedPost = MockAPI.getPost(nextProps.match.params['slug']);
+            updatedPost = MockAPI.getIssue(nextProps.match.params['slug']);
         }
 
         if (nextProps.selectedIssue !== this.props.selectedIssue) {
@@ -100,3 +102,18 @@ export class ViewIssuePanel extends Component {
 ViewIssuePanel.propTypes = {
     selectedPost: PropTypes.object
 };
+
+const mapStateToProps = state => ({
+    authData: state.authReducer.authData
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatchLogin: (username, password) => {
+        dispatch(userLoginAction(username, password))
+    },
+    dispatchLogout: () => {
+        dispatch(userLogoutAction())
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewIssuePanel);

@@ -11,7 +11,7 @@ const authInitialState = {
     },
     error: false,
     errorMessage: null
-}
+};
 
 function authReducer(state = authInitialState, action) {
     switch(action.type) {

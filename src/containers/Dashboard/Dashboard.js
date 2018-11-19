@@ -33,7 +33,7 @@ export class Dashboard extends Component {
 
     componentDidMount() {
         this.putIssuesToState(MockAPI.getAllIssues());
-        this.setState({allIssuesArray: MockAPI.getAllIssues()})
+        this.setState({allIssuesArray: MockAPI.getAllIssues().issuesList})
     }
 
     putIssuesToState(issuesArray) {

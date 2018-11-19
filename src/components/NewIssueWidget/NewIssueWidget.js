@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import _ from 'lodash';
 
 import "./NewIssueWidget.scss";
+import {userLoginAction, userLogoutAction} from "../../actions/auth";
+import {connect} from "react-redux";
+import {createNewIssueAction} from "../../actions/Issues";
 
 export class NewIssueWidget extends Component {
     constructor(props) {
@@ -61,7 +64,7 @@ export class NewIssueWidget extends Component {
         /** If no errors, shape request object and send*/
         if (_.isEmpty(errors)) {
         // ignoring typical HTML stuff headers
-            const req = {
+            const issueObject = {
                 "issue-title": title,
                 "issue-type": type,
                 "issue-closed": false,
@@ -74,7 +77,7 @@ export class NewIssueWidget extends Component {
                         }
                 }
             };
-            this.props.onIssueSubmit(req);
+            this.props.dispatchCreateNewIssue(issueObject);
         } else {
             this.setState({errors: errors})
         }
@@ -133,4 +136,13 @@ export class NewIssueWidget extends Component {
 
 NewIssueWidget.propTypes = {
     onIssueSubmit: PropTypes.func.isRequired
-}
+};
+
+
+const mapDispatchToProps = dispatch => ({
+    dispatchCreateNewIssue: (issueObject) => {
+        dispatch(createNewIssueAction(issueObject))
+    },
+});
+
+export default connect(null, mapDispatchToProps)(NewIssueWidget);

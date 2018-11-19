@@ -93,16 +93,16 @@ export default class MockAPI {
     /** Getter functions */
     // fetches all posts from local storage
     static getAllIssues() {
-        let allPosts = [];
+        let issuesList = [];
         keys.forEach(function(key) {
             const issue = localStorage.getObj(key);
-            allPosts.push(issue);
+            issuesList.push(issue);
         });
-        return allPosts
+        return { issuesList, error: false}
     }
 
     // get a specific post from the back end
-    static getPost(slug) {
+    static getIssue(slug) {
         const key = getSlug(slug);
         const obj = localStorage.getObj(key);
         // console.log("Fetched " + JSON.stringify(obj, null, 2))
@@ -132,13 +132,16 @@ export default class MockAPI {
     static createNewIssue(issueObject) {
 
         // append datetime on server side
-        const updatedObject = _.set(issueObject, 'issue-log.1.datetime', moment.now());
+        const updatedObject = _.set(issueObject, 'issueObject.issue-log.1.datetime', moment.now());
 
         // get the issue Id aka the slug
         const key = getSlug(issueObject['issue-title']);
         keys.push(key);
         localStorage.setObj(key, updatedObject);
         // console.log("Created new issue")
+        return {
+            error: false
+        }
     }
 
     // Appends a post to an issue
@@ -152,7 +155,7 @@ export default class MockAPI {
 
     /** Edit functions */
     static editPost(issueTitle, postIndex, newContent) {
-        const beforeObject = this.getPost(issueTitle);
+        const beforeObject = this.getIssue(issueTitle);
         console.log("before " + JSON.stringify(beforeObject, null, 2));
         console.log("New content is " + JSON.stringify(newContent));
         const updatedObject = _.set(beforeObject, ["issue-log", postIndex, "description"], newContent);

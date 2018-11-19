@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import moment from 'moment';
 import "./ViewIssuePost.scss";
 import _ from "lodash";
+import { userLoginAction, userLogoutAction } from "../../actions/auth";
+import { connect } from "react-redux";
+import { loadIssueAction } from "../../actions/Issues";
 
 export class ViewIssuePost extends Component {
     constructor(props) {
@@ -111,3 +114,16 @@ ViewIssuePost.propTypes = {
     postIndex: PropTypes.number.isRequired,
     description: PropTypes.string
 };
+
+const mapStateToProps = state => ({
+    authData: state.authReducer.authData,
+
+});
+
+const mapDispatchToProps = dispatch => ({
+    dispatchLoadIssue: (issueId) => {
+        dispatch(loadIssueAction(issueId))
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewIssuePost);
