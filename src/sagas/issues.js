@@ -1,4 +1,4 @@
-import { take, put, call, fork } from 'redux-saga/effects';
+import { take, put, call, fork, } from 'redux-saga/effects';
 import MockAPI from "../services/MockAPI";
 
 import {

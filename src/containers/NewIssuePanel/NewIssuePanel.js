@@ -11,9 +11,9 @@ export class NewIssuePanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: undefined,
-            type: undefined,
-            body: undefined,
+            title: '',
+            type: '',
+            body: '',
             errors: null
         };
 
@@ -136,7 +136,7 @@ export class NewIssuePanel extends Component {
 }
 
 NewIssuePanel.propTypes = {
-    onIssueSubmit: PropTypes.func.isRequired
+    authData: PropTypes.object
 };
 
 const mapStateToProps = state => ({

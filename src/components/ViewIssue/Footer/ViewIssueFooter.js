@@ -12,7 +12,7 @@ class ViewIssueFooter extends Component {
           <div className={"login-tooltip"}>
               Please log in to comment
           </div>
-        )
+        );
 
         const newPostInputFooter = (
             <div className={"new-post-input-container"}>

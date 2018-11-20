@@ -109,7 +109,7 @@ class ViewIssuePost extends Component {
 ViewIssuePost.propTypes = {
     author: PropTypes.string.isRequired,
     datetime: PropTypes.string.isRequired,
-    postIndex: PropTypes.number.isRequired,
+    postIndex: PropTypes.string.isRequired,
     description: PropTypes.string
 };
 
