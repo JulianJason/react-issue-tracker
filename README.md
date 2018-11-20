@@ -2,10 +2,10 @@
 A simple issue tracker built in react
 
 Functional Requirements:
-[ ] Create new Issue
-[ ] Edit Issue title, type and description
-[ ] Close and Reopen Issue
-[ ] View list of all issues
+[x] Create new Issue
+[x] Edit Issue title, type and description
+[x] Close and Reopen Issue
+[x] View list of all issues
 [ ] Change the order of items in the list of issues
 [ ] View a chart of open issues count by issue type
 
@@ -14,8 +14,8 @@ TODO:
 [x] Create Header and Footer
 [x] Wireframe UI Master UI
 [x] Implement Login Modal
-[ ] Implement React Router
-[ ] Implement Redux
-[ ] Finish login and authentication flow
+[x] Implement React Router
+[x] Implement Redux
+[x] Finish login and authentication flow
 
-[ ] Create body UI
+[x] Create body UI
