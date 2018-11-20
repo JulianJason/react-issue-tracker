@@ -1,7 +1,6 @@
 // libraries
 import React, { Component } from 'react';
 import './App.css';
-import _ from 'lodash';
 
 // root-level components
 import Header  from "./containers/Header/Header";

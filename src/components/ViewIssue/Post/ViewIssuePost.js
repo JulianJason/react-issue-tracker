@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from 'moment';
-import "./ViewIssuePost.scss";
 import _ from "lodash";
-import { userLoginAction, userLogoutAction } from "../../actions/auth";
-import { connect } from "react-redux";
-import { loadIssueAction } from "../../actions/issues";
 
-export class ViewIssuePost extends Component {
+import "./ViewIssuePost.scss";
+
+class ViewIssuePost extends Component {
     constructor(props) {
         super(props);
 
@@ -38,7 +36,7 @@ export class ViewIssuePost extends Component {
     }
 
     onEditSubmit() {
-        console.log("ViewIssuePost index is " + this.props.postIndex);
+        console.log("ViewIssue index is " + this.props.postIndex);
         this.props.onPostEdit(this.props.postIndex, this.state.description);
         this.setState({
             isEditing: false,
@@ -115,15 +113,4 @@ ViewIssuePost.propTypes = {
     description: PropTypes.string
 };
 
-const mapStateToProps = state => ({
-    authData: state.authReducer.authData,
-
-});
-
-const mapDispatchToProps = dispatch => ({
-    dispatchLoadIssue: (issueId) => {
-        dispatch(loadIssueAction(issueId))
-    },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ViewIssuePost);
+export default ViewIssuePost;

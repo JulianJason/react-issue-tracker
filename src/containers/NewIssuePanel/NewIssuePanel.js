@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from 'react-router-dom'
+import {connect} from "react-redux";
 import _ from 'lodash';
 
 import "./NewIssuePanel.scss";
-import {userLoginAction, userLogoutAction} from "../../actions/auth";
-import {connect} from "react-redux";
 import {createNewIssueAction} from "../../actions/issues";
 
 export class NewIssuePanel extends Component {
@@ -32,7 +32,6 @@ export class NewIssuePanel extends Component {
 
     handleSubmitNewIssue(event) {
         event.preventDefault();
-        let formIsValid = true;
         let errors = {};
         const { title, type, body } = this.state;
 
@@ -40,21 +39,18 @@ export class NewIssuePanel extends Component {
 
         // Title is not empty
         if (_.isEmpty(title)) {
-            formIsValid = false;
             errors["title"] = "Title cannot be empty"
         }
 
         // Title is alphanumeric only
         if (typeof[title] !== "undefined") {
             if (!(title).match(/^[a-z0-9]+$/i)) {
-                formIsValid = false;
                 errors["title"] = "Title must be alphanumeric"
             }
         }
 
         // type must be categorized
         if (_.isEmpty(type)) {
-            formIsValid = false;
             errors['type'] = "Please select a type"
         }
 
@@ -84,33 +80,34 @@ export class NewIssuePanel extends Component {
 
     }
     render() {
-        return (
-            <div className="new-issue-widget">
-                <div className="new-issue-header">
-                    <input
-                        name="title"
-                        className="new-issue-input"
-                        value={this.state.title}
-                        onChange={this.handleChange}
-                        required
-                        autoFocus="autoFocus"
-                        autoComplete="off"
-                        type="text"
-                        placeholder="Title"
-                    />
-                    <select
-                        name="type"
-                        value={this.state.type}
-                        onChange={this.handleChange}
-                        className="type-selector"
-                    >
-                        <option value="">None</option>
-                        <option value="improvement">Improvement</option>
-                        <option value="question">Question</option>
-                        <option value="bug">Bug</option>
-                    </select>
-                </div>
-                <div className="new-issue-header">
+        if (!_.isEmpty(this.props.authData.username)) {
+            return (
+                <div className="new-issue-widget">
+                    <div className="new-issue-header">
+                        <input
+                            name="title"
+                            className="new-issue-input"
+                            value={this.state.title}
+                            onChange={this.handleChange}
+                            required
+                            autoFocus="autoFocus"
+                            autoComplete="off"
+                            type="text"
+                            placeholder="Title"
+                        />
+                        <select
+                            name="type"
+                            value={this.state.type}
+                            onChange={this.handleChange}
+                            className="type-selector"
+                        >
+                            <option value="">None</option>
+                            <option value="improvement">Improvement</option>
+                            <option value="question">Question</option>
+                            <option value="bug">Bug</option>
+                        </select>
+                    </div>
+                    <div className="new-issue-header">
                     <textarea
                         name="body"
                         value={this.state.body}
@@ -119,24 +116,32 @@ export class NewIssuePanel extends Component {
                         autoComplete="off"
                         placeholder="Leave a description"
                     />
+                    </div>
+                    <button
+                        className="new-issue-submit-button"
+                        onClick={this.handleSubmitNewIssue}
+                        disabled= {_.isEmpty(this.state.title) || _.isEmpty(this.state.type)}
+                    >
+                        Submit New Issue
+                    </button>
                 </div>
-                <button
-                    className="new-issue-submit-button"
-                    onClick={this.handleSubmitNewIssue}
-                    disabled= {_.isEmpty(this.state.title) || _.isEmpty(this.state.type)}
-                >
-                    Submit New Issue
-                </button>
+            )
+        } else {
+            return <div className={"center-text"}>
+                Please login to submit new issue
             </div>
+        }
 
-
-        )
     }
 }
 
 NewIssuePanel.propTypes = {
     onIssueSubmit: PropTypes.func.isRequired
 };
+
+const mapStateToProps = state => ({
+    authData: state.authReducer.authData
+});
 
 
 const mapDispatchToProps = dispatch => ({
@@ -145,4 +150,4 @@ const mapDispatchToProps = dispatch => ({
     },
 });
 
-export default connect(null, mapDispatchToProps)(NewIssuePanel);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewIssuePanel));

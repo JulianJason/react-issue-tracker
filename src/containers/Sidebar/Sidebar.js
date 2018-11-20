@@ -10,7 +10,7 @@ import {
 
 import {
     loadIssuesListAction,
-    loadIssueAction
+    loadIssueAction,
 } from "../../actions/issues";
 
 
@@ -32,7 +32,7 @@ class Sidebar extends Component {
     render() {
 
         return (
-            <div className="body-layout-master">
+            <div className="sidebar">
                 <OverviewWidget issuesList={this.props.issuesList}/>
                 <div className="separator"/>
                 <IssueListingWidget
@@ -61,7 +61,7 @@ const mapDispatchToProps = dispatch => ({
 
     dispatchLoadIssue: (issueId) => {
         dispatch(loadIssueAction(issueId))
-    }
+    },
 });
 
 export default connect(mapStateToProps , mapDispatchToProps)(Sidebar);

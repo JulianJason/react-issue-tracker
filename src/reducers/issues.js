@@ -19,7 +19,7 @@ const issuesInitialState = {
     isFetchingListFailed: false,
     isRegistering: false,
     isRegisteringFailed: false,
-    issuesList: {},
+    issuesList: null,
     selectedIssue: null
 
 };

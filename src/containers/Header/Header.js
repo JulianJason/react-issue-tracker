@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Row, Col } from 'react-grid-system';
 import { connect } from 'react-redux';
 import { LoginModal } from "../../components/index";
@@ -82,10 +81,6 @@ class Header extends Component {
         )
     }
 }
-Header.propTypes = {
-    showLoginModal: PropTypes.func.isRequired,
-};
-
 
 const mapStateToProps = state => ({
     authData: state.authReducer.authData,

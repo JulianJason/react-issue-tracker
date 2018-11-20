@@ -144,7 +144,7 @@ export default class MockAPI {
     }
 
     // Appends a post to an issue
-    static commentOnIssue(issueId, commentObject) {
+    static postOnIssue(issueId, commentObject) {
         const beforeObject = JSON.parse( localStorage.getObj(issueId));
         const updatedObject = { ...beforeObject, commentObject};
 

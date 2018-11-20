@@ -5,33 +5,76 @@ import _ from 'lodash';
 import getSlug from 'speakingurl';
 
 import "./IssueListingWidget.scss";
-import {loadIssuesListAction} from "../../actions/issues";
 
 export class IssueListingWidget extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            filter: '',
+            filteredList: null
+        };
+
+        this.filterIssuesList = this.filterIssuesList.bind(this);
+    }
+
+    filterIssuesList(event) {
+        const filerValue = event.target.value;
+        // update controlled component
+        this.setState({
+            filter: filerValue
+        });
+
+        if (!_.isEmpty(event.target.value)) {
+            const filteredList = _.filter(this.props.issuesList, function(issue) {
+                return _.toUpper(issue['issue-title']).includes(_.toUpper(filerValue))
+            });
+
+            this.setState({
+                isFiltering: true,
+                filteredList: filteredList
+            })
+        } else {
+
+            this.setState({
+                isFiltering: false,
+                filteredList: null
+            })
+        }
+
+
+    }
 
     renderIssueListItems(listArray) {
         const issueListRender = [];
 
-        listArray.forEach(object => (
-                issueListRender.push(
-                    <li
-                        className="list-item"
-                        key={object['issue-title']}
-                        onClick={() => this.props.onIssueSelect(object['issue-title'])}
-                    >
-                        <Link to={"/view/" + getSlug(object['issue-title'])}>
-                            <p className="list-item-text">{object['issue-title']}</p>
-                        </Link>
-                     </li>)
-            ));
+        let listToUse = null;
+        // if is filtering
+        if (this.state.isFiltering) {
+            listToUse = this.state.filteredList
+        } else {
+            listToUse = listArray;
+        }
+
+        listToUse.forEach(object => (
+            issueListRender.push(
+                <li
+                    className="list-item"
+                    key={object['issue-title']}
+                    onClick={() => this.props.onIssueSelect(object['issue-title'])}
+                >
+                    <Link to={"/view/" + getSlug(object['issue-title'])}>
+                        <p className="list-item-text">{object['issue-title']}</p>
+                    </Link>
+                </li>)
+        ));
 
         return issueListRender;
         }
 
     render() {
+        let issueListing = null;
 
-
-        var issueListing = null;
         if (!_.isEmpty(this.props.issuesList)) {
             issueListing = <ul className="listing-items-container">
                 {this.renderIssueListItems(this.props.issuesList)}
@@ -57,6 +100,9 @@ export class IssueListingWidget extends Component {
                     <input
                         className="search-filter"
                         placeholder="Filter results"
+                        value={this.state.filter}
+                        onChange={(event) => this.filterIssuesList(event)}
+
                     />
                 {issueListing}
             </div>
@@ -66,18 +112,12 @@ export class IssueListingWidget extends Component {
 }
 
 IssueListingWidget.propTypes = {
-    issuesList: PropTypes.array,
+    issuesList: PropTypes.arrayOf(PropTypes.shape({
+        'issue-type': PropTypes.string,
+        'issue-closed': PropTypes.bool
+    })),
     onIssueSelect: PropTypes.func
 };
 
-const mapStateToProps = state => ({
-    issuesList: state.issuesReducer.issuesList
-});
 
-const mapDispatchToProps = dispatch => ({
-    dispatchLoadIssuesList: () => {
-        dispatch(loadIssuesListAction())
-    }
-});
-
-export default (IssueListingWidget);
+export default IssueListingWidget;

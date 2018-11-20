@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import "./OverviewWidget.scss";
 
-export class OverviewWidget extends Component {
+class OverviewWidget extends Component {
 
 
     renderTypeMap(typeMap) {
@@ -12,9 +12,13 @@ export class OverviewWidget extends Component {
             return <p className="charts-text" key={key}>{_.startCase(key)}: {value}</p>
         });
     }
-    render() {
 
-        const typeMap = {};
+    render() {
+        const typeMap = {
+            "bug": 0,
+            "improvement": 0,
+            "question": 0
+        };
         if (this.props.issuesList !== null) {
             _.forEach(this.props.issuesList, function(issue) {
                 typeMap[issue['issue-type']] = (typeMap[issue['issue-type']] || 0) + 1;
@@ -25,6 +29,9 @@ export class OverviewWidget extends Component {
 
         return (
             <div className="charts-container">
+                <div className={"overview-text"}>
+                    Overview
+                </div>
                 {this.renderTypeMap(typeMap)}
             </div>
         )
@@ -32,5 +39,10 @@ export class OverviewWidget extends Component {
 }
 
 OverviewWidget.propTypes = {
-    issuesList: PropTypes.array
+    issuesList: PropTypes.arrayOf(PropTypes.shape({
+        'issue-type': PropTypes.string,
+        'issue-closed': PropTypes.bool
+    })),
 };
+
+export default OverviewWidget;
